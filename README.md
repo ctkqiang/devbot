@@ -3,14 +3,14 @@
 DevBot is an intelligent system that automatically generates insightful comments for code commits and sends notifications through Slack. It leverages the DeepSeek AI model to provide meaningful code review assistance.
 
 ## System Architecture
-![system_arch](")
+![system_arch]("https://github.com/ctkqiang/devbot/blob/main/images/system_arch.png?raw=true")
 
 ## How It Works
 
 
 ### 1. Data Flow
 
-![sdata_flow](")
+![sdata_flow]("https://github.com/ctkqiang/devbot/blob/main/images/flow.png?raw=true")
 
 
 ### 2. Mathematical Model
