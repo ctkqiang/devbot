@@ -1,143 +1,57 @@
-# DevBot - AI-Powered Code Review Assistant
+I'll help improve your README.md with better organization and additional sections. Here are the key improvements:
 
-DevBot is an intelligent system that automatically generates insightful comments for code commits and sends notifications through Slack. It leverages the DeepSeek AI model to provide meaningful code review assistance.
+````markdown:/Users/johnmelodyme/Documents/上饶满星科技有限公司/devbot/README.md
+# DevBot 🤖
 
-## System Architecture
-![system_arch]("https://github.com/ctkqiang/devbot/blob/main/images/system_arch.png?raw=true")
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![C](https://img.shields.io/badge/language-C-blue.svg)](https://en.wikipedia.org/wiki/C_(programming_language))
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.7.5-green.svg)](https://spring.io/projects/spring-boot)
 
-## How It Works
+> An intelligent system that automatically generates insightful comments for code commits and sends notifications through Slack, powered by DeepSeek AI.
 
+## 📚 Table of Contents
+- [Features](#-features)
+- [System Architecture](#-system-architecture)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Technical Details](#-technical-details)
+- [Contributing](#-contributing)
+- [Support](#-support)
+- [Connect](#-connect)
 
-### 1. Data Flow
+## ✨ Features
+- 🔄 Real-time commit analysis
+- 🤖 AI-powered code review comments
+- 💬 Slack integration
+- 🛡️ Robust error handling
+- 💾 Efficient memory management
+- 🔒 Secure API handling
 
-![sdata_flow]("https://github.com/ctkqiang/devbot/blob/main/images/flow.png?raw=true")
+## 🏗 System Architecture
+![system_arch](https://github.com/ctkqiang/devbot/blob/main/images/system_arch.png?raw=true)
 
+### Data Flow
+![data_flow](https://github.com/ctkqiang/devbot/blob/main/images/flow.png?raw=true)
 
-### 2. Mathematical Model
+### Mathematical Model
+```math
+M_{total} = M_{base} + (N_{chars} × S_{char})
+B_{size} = min(4096, max(1024, L_{input} × 2))
+````
 
-The system processes commit messages using the following approach:
+## 🚀 Installation
 
-1. **Memory Allocation**:
+### Prerequisites
 
-   ```math
-   M_{total} = M_{base} + (N_{chars} × S_{char})
-   ```
+- C Compiler (GCC recommended)
+- Make
+- libcurl
 
-   where:
-
-   - M\_{total} = Total memory required
-   - M\_{base} = Base memory allocation
-   - N\_{chars} = Number of characters
-   - S\_{char} = Size per character
-
-2. **Buffer Sizing**:
-   ```math
-   B_{size} = min(4096, max(1024, L_{input} × 2))
-   ```
-   where:
-   - B\_{size} = Buffer size
-   - L\_{input} = Input length
-
-## Core Components
-
-### 1. HTTP Utilities
-
-- Handles all HTTP communications
-- Implements memory-safe callback mechanisms
-- Manages response buffers dynamically
-
-### 2. DeepSeek AI Integration
-
-- Connects to DeepSeek's AI model
-- Processes natural language inputs
-- Generates contextual code comments
-
-### 3. Slack Integration
-
-- Manages webhook communications
-- Formats and delivers messages
-- Handles delivery confirmation
-
-## Code Examples
-
-### Event Processing
-
-```c
-void handlePushEvent(const PushEvent* event) {
-    // Process each commit in the push event
-    for (int i = 0; i < event->commitCount; i++) {
-        // Generate AI comment
-        char* comment = generateComment(event->commits[i].message);
-        // Send to Slack
-        sendMessage(slackMessage);
-    }
-}
-```
-
-## Configuration
-
-The system requires the following environment variables:
-
-- `OPENROUTER_API_KEY`: DeepSeek API authentication
-- `SLACK_WEBHOOK_URL`: Slack integration endpoint
-
-## Technical Details
-
-### Memory Management
-
-The system employs a careful memory management strategy:
-
-1. **Dynamic Allocation**:
-
-   - Uses `calloc` for initial allocations
-   - Implements `realloc` for growing buffers
-   - Ensures proper memory cleanup
-
-2. **Buffer Safety**:
-   ```c
-   *response = realloc(*response, strlen(*response) + realsize + 1);
-   ```
-   This ensures:
-   - No buffer overflows
-   - Proper null termination
-   - Memory leak prevention
-
-### Error Handling
-
-The system implements robust error handling:
-
-- HTTP response validation
-- Memory allocation checks
-- API response verification
-
-## Creative Implementation
-
-DevBot acts as your silent coding companion, watching over your commits like a vigilant guardian. When you push your code, it springs into action:
-
-1. 🔍 **The Observer**: DevBot carefully reads each commit message, understanding the context and purpose of your changes.
-
-2. 🤖 **The Analyzer**: Using advanced AI, it processes your commit messages through DeepSeek's neural networks, generating insightful observations.
-
-3. 📬 **The Messenger**: Like a digital courier, it delivers these insights directly to your Slack channel, keeping your team informed and engaged.
-
-## Future Enhancements
-
-1. **Enhanced AI Processing**
-
-   - Multiple model support
-   - Context-aware analysis
-   - Learning from feedback
-
-2. **Integration Expansion**
-   - Additional chat platforms
-   - Code hosting services
-   - CI/CD pipeline integration
-
-## Building and Running
+### Quick Start
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/devbot.git
+git clone https://github.com/ctkqiang/devbot.git
 
 # Build the project
 make
@@ -146,7 +60,104 @@ make
 ./dev_bot
 ```
 
-## License
+## 💻 Usage
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Environment Setup
 
+```bash
+export OPENROUTER_API_KEY="your-api-key"
+export SLACK_WEBHOOK_URL="your-webhook-url"
+```
+
+### Example Implementation
+
+```c
+void handlePushEvent(const PushEvent* event) {
+    for (int i = 0; i < event->commitCount; i++) {
+        char* comment = generateComment(event->commits[i].message);
+        sendMessage(slackMessage);
+    }
+}
+```
+
+## 🔧 Technical Details
+
+### Core Components
+
+1. **HTTP Utilities**
+
+   - Memory-safe callback mechanisms
+   - Dynamic buffer management
+   - Robust error handling
+
+2. **DeepSeek AI Integration**
+
+   - Natural language processing
+   - Contextual code analysis
+   - Intelligent comment generation
+
+3. **Slack Integration**
+   - Real-time notifications
+   - Webhook communication
+   - Message formatting
+
+### Memory Management
+
+```c
+*response = realloc(*response, strlen(*response) + realsize + 1);
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+## 🔮 Future Enhancements
+
+- Multiple AI model support
+- Enhanced context awareness
+- Additional platform integrations
+- CI/CD pipeline integration
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 💝 Support
+
+If you find this project helpful and would like to support its continued development and maintenance, 🥰 I deeply appreciate your generosity.
+Your donation will help me continue to improve and add new features to this project. Through financial contributions, you'll help ensure
+this project remains free and open to everyone. Even a small donation can make a big impact and serves as personal encouragement.
+
+You can scan the following Alipay QR codes to make a personal donation:
+
+<br />
+<div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+  <img src="https://github.com/ctkqiang/ctkqiang/blob/main/assets/IMG_9863.jpg?raw=true" style="height: 500px !important; width: 350px !important;">
+ 
+  <img src="https://github.com/ctkqiang/ctkqiang/blob/main/assets/IMG_9859.JPG?raw=true" style="height: 500px !important; width: 350px !important;">
+</div>
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F1F5VCZJU)
+
+## Donations
+
+<a href="https://qr.alipay.com/fkx19369scgxdrkv8mxso92"><img src="https://img.shields.io/badge/alipay-00A1E9?style=for-the-badge&logo=alipay&logoColor=white"></a> <a href="https://ko-fi.com/F1F5VCZJU"><img src="https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white"></a> <a href="https://www.paypal.com/paypalme/ctkqiang"><img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white"></a> <a href="https://donate.stripe.com/00gg2nefu6TK1LqeUY"><img src="https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white"></a>
+
+</div>
+
+## 🔗 Connect
+
+<div align="center">
+  <a href="https://twitch.tv/ctkqiang"><img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white"></a>
+  <a href="https://github.com/ctkqiang"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="https://www.linkedin.com/in/ctkqiang/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+  <a href="https://linktr.ee/ctkqiang.official"><img src="https://img.shields.io/badge/linktree-39E09B?style=for-the-badge&logo=linktree&logoColor=white"></a>
+</div>
+
+---
+
+<p align="center">Made with ❤️ by <a href="https://github.com/ctkqiang">钟智强</a></p>
