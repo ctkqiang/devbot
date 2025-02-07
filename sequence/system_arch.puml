@@ -1,0 +1,23 @@
+@startuml
+skinparam componentStyle uml2
+
+actor Developer
+component "GitHub\nRepository" as Github
+component "DevBot" as DevBot {
+    component "Event Handler" as Handler
+    component "DeepSeek AI\nIntegration" as AI
+    component "HTTP Utils" as HTTP
+    component "Slack\nNotification" as Slack
+}
+database "Configuration" as Config
+
+Developer --> Github : Push commits
+Github --> Handler : Trigger push event
+Handler --> AI : Request analysis
+AI --> HTTP : Make API calls
+HTTP --> AI : Return response
+AI --> Slack : Send message
+Slack --> Developer : Notify
+Config --> DevBot : Configure
+
+@enduml

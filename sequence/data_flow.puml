@@ -1,0 +1,17 @@
+@startuml
+skinparam sequenceMessageAlign center
+
+participant "Developer" as Dev
+participant "GitHub" as Git
+participant "Event Handler" as Handler
+participant "DeepSeek AI" as AI
+participant "Slack" as Slack
+
+Dev -> Git: Push commit
+Git -> Handler: Trigger event
+Handler -> AI: Request analysis
+AI -> Handler: Return comment
+Handler -> Slack: Send notification
+Slack -> Dev: Receive message
+
+@enduml
