@@ -50,12 +50,30 @@ B_{size} = min(4096, max(1024, L_{input} × 2))
 # Clone the repository
 git clone https://github.com/ctkqiang/devbot.git
 
-# Build the project
-make
+# Navigate to project directory
+cd devbot
+
+# Compile the project
+gcc -Wall -Wextra -I. -o dev_bot main.c deepseek_api.c slack_api.c -lcurl
 
 # Run the application
 ./dev_bot
 ```
+
+Note: Make sure you have GCC and libcurl installed on your system:
+
+For Ubuntu/Debian:
+
+```bash
+sudo apt-get install gcc libcurl4-openssl-dev
+```
+
+For macOS (using Homebrew):
+
+```bash
+brew install gcc curl
+```
+
 
 ## 💻 Usage
 
